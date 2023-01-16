@@ -1,0 +1,24 @@
+target = args[0]
+if (target = "home"){
+neededRam = getScriptRam("early-hack-template.script")
+serverRam = getServerMaxRam(target)
+extraHome = getScriptRam("setupHack.script")
+runs = Math.floor(serverRam/neededRam)
+runs = runs * 0.98
+print("Max number of Runs: " + runs)
+print("Script Ram: " + neededRam)
+print("Server Memory: " + serverRam)
+run ("early-hack-template.script", runs)
+}else{
+scp ("early-hack-template.script", target)
+print("Target: " + target)
+neededRam = getScriptRam("early-hack-template.script")
+serverRam = getServerMaxRam(target)
+runs = Math.floor(serverRam/neededRam)
+
+print("Max number of Runs: " + runs)
+print("Script Ram: " + neededRam)
+print("Server Memory: " + serverRam)
+nuke(target)
+exec("early-hack-template.script", target ,runs)
+}
